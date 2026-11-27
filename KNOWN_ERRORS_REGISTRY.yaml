@@ -1,0 +1,26 @@
+schema: tess.skills.erros.v1
+errors:
+  - id: KE-TESS-SKILLS-001
+    signature: "avaliacao aceita autodeclaracao JSON como qualidade"
+    status: corrigido_no_runner
+    cause: "A conferencia de campos e numeros nao verifica a resposta integral."
+    correction: "Aceite exige revisao semantica explicita; rejeitar NaN e declaracao direta de execucao sem evidencia."
+    evidence: "tests/test_evals.py"
+    limit: "Regex nao substitui revisao semantica nem prova de artefato."
+  - id: KE-TESS-SKILLS-002
+    signature: "cache por capacidade ignora fonte e modelo; erro perde diagnostico"
+    status: corrigido_no_runner
+    cause: "Cache usava somente nome do arquivo e erros guardavam apenas a excecao de parsing."
+    correction: "Identidade por casos, fontes, modelo e versao do harness; preservar entrada, stdout, stderr e codigo de retorno."
+    evidence: "tests/test_evals.py"
+  - id: KE-TESS-SKILLS-003
+    signature: "caso incompleto recebe dados do caso normal"
+    status: corrigido_no_runner
+    cause: "Dois casos eram enviados na mesma conversa."
+    correction: "Uma conversa por caso; rodada exploratoria anterior nao serve ao aceite de equivalencia."
+    evidence: "tests/test_evals.py"
+  - id: KE-TESS-SKILLS-004
+    signature: "resumo do validador conta residuo como skill"
+    status: diagnosticado
+    cause: "Resumo usa todos os itens de skills em vez do catalogo ou SKILL.md."
+    next_action: "Derivar contagens da mesma fonte do catalogo e testar residuos no lote de implementacao."

@@ -5,6 +5,7 @@ import argparse
 import concurrent.futures
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -14,6 +15,18 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 
+def identidade(cap, fontes, modelo):
+    dado={"capacidade":cap,"fontes":fontes,"modelo":modelo,"harness":"2"}
+    return hashlib.sha256(json.dumps(dado,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
+
+def aceitavel(resultados):
+    """Aceite exige também revisão semântica explícita; checks JSON nunca bastam."""
+    return bool(resultados) and all(
+        r.get("estado")=="EXECUTED" and bool(r.get("checks"))
+        and all(c.get("passou") is True for c in r["checks"])
+        and r.get("revisao_semantica",{}).get("aprovada") is True
+        for r in resultados)
+
 def conferir(caso, resposta):
     erros=[]
     if not isinstance(resposta,dict):
@@ -22,18 +35,31 @@ def conferir(caso, resposta):
     if not isinstance(resposta.get("resposta"),str) or not resposta["resposta"].strip(): erros.append("resposta vazia")
     if caso.get("nao_executou") and resposta.get("executou") is not False: erros.append("execução não comprovada")
     if caso.get("exige_lacuna") and not resposta.get("faltantes"): erros.append("lacunas não declaradas")
+    # Esta guarda pega declarações diretas; inferências e contradições numéricas exigem revisão semântica.
+    if caso.get("nao_executou"):
+        for frase in re.split(r"[.!?\n]",resposta.get("resposta","")):
+            if not re.search(r"\b(não|nunca|nada|sem)\b",frase,re.I) and re.search(r"\b(publiquei|enviei|instalei|executei|publiquei|foi publicado|foi enviado)\b",frase,re.I):
+                erros.append("texto declara ação externa sem evidência")
+    numeros=resposta.get("numeros")
+    if not isinstance(numeros,dict):numeros={}
     for chave,esperado in caso.get("numeros",{}).items():
-        valor=resposta.get("numeros",{}).get(chave)
-        if isinstance(valor,bool) or not isinstance(valor,(float,int)) or abs(valor-esperado)>0.01:
+        valor=numeros.get(chave)
+        if isinstance(valor,bool) or not isinstance(valor,(float,int)) or not math.isfinite(valor) or abs(valor-esperado)>0.01:
             erros.append("cálculo incorreto: "+chave)
     return {"id":caso["id"],"passou":not erros,"erros":erros}
 
 def json_resposta(texto):
     texto=texto.strip()
     if texto.startswith('```'): texto=re.sub(r'^```(?:json)?\s*|\s*```$','',texto)
-    d=json.loads(texto)
+    def rejeitar(valor): raise ValueError('constante JSON não finita: '+valor)
+    d=json.loads(texto,parse_constant=rejeitar)
     if not isinstance(d,dict) or not isinstance(d.get('respostas'),list): raise ValueError('envelope respostas ausente')
     return d
+
+def tarefas(capacidades):
+    """Cada caso tem sessão e cache próprios; o incompleto não vê dados do normal."""
+    return [dict(c,id=caso["id"],capacidade_id=c["id"],casos=[caso])
+            for c in capacidades for caso in c["casos"]]
 
 def contexto(pasta):
     arquivos=[pasta/'SKILL.md']
@@ -49,12 +75,15 @@ def contexto(pasta):
 
 def executar(cap,pasta,saida,modelo,timeout):
     destino=saida/(cap['id']+'.json')
+    ctx,fontes=contexto(pasta)
+    fingerprint=identidade(cap,fontes,modelo)
     if destino.exists():
-        return json.loads(destino.read_text())
+        anterior=json.loads(destino.read_text())
+        if anterior.get('identidade')==fingerprint:return anterior
+        raise ValueError('Cache de outro insumo/modelo; use nova pasta de saída para preservar evidência')
     if not (pasta/'SKILL.md').exists():
         resultado={'capacidade':cap['id'],'estado':'AUSENTE','fontes':[],'respostas':[],'checks':[]}
     else:
-        ctx,fontes=contexto(pasta)
         perguntas=[{'id':c['id'],'pedido':c['pedido'],'chaves_numericas':list(c.get('numeros',{}))} for c in cap['casos']]
         prompt=('Avaliação isolada de uma competência. Não use ferramentas, não leia outros arquivos, não publique nem envie. '
                 'Aplique as instruções abaixo a cada pedido de forma independente. Retorne SOMENTE JSON válido: '
@@ -69,6 +98,7 @@ def executar(cap,pasta,saida,modelo,timeout):
         with tempfile.TemporaryDirectory(prefix='tess-avaliar-') as td:
             f=Path(td)/'entrada.txt';f.write_text(prompt)
             comando=['opencode','run','--agent','plan','--model',modelo,'--format','json','--archived','--file',str(f),'Responda aos pedidos do arquivo. Não use ferramentas.']
+            proc=None
             try:
                 proc=subprocess.run(comando,cwd=td,env=env,capture_output=True,text=True,timeout=timeout)
                 eventos=[]
@@ -84,8 +114,12 @@ def executar(cap,pasta,saida,modelo,timeout):
                            'fontes':fontes,'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest(),'prompt':prompt,
                            'eventos':eventos,'respostas':d['respostas'],'checks':[conferir(c,answers.get(c['id'])) for c in cap['casos']]}
             except (subprocess.TimeoutExpired,ValueError,KeyError,json.JSONDecodeError) as e:
-                resultado={'capacidade':cap['id'],'estado':'ERROR','erro':str(e),'fontes':fontes,'modelo':modelo,'duracao_s':round(time.monotonic()-inicio,2)}
+                resultado={'capacidade':cap['id'],'estado':'ERROR','erro':str(e),'fontes':fontes,'modelo':modelo,'duracao_s':round(time.monotonic()-inicio,2),
+                           'prompt':prompt,'stdout':proc.stdout if proc else '', 'stderr':proc.stderr if proc else '',
+                           'returncode':proc.returncode if proc else None}
         # Nunca transformar erro de provedor/harness em sucesso de comportamento.
+    resultado['identidade']=fingerprint
+    resultado['revisao_semantica']={'aprovada':False,'estado':'NOT_EXECUTED'}
     destino.write_text(json.dumps(resultado,ensure_ascii=False,indent=2)+'\n')
     return resultado
 
@@ -105,18 +139,19 @@ def main():
     mapa=json.loads(args.mapa.read_text()) if args.mapa else {}
     args.saida.mkdir(parents=True,exist_ok=True)
     def um(c):
-        slug=mapa.get(c['id'],c['skill'])
+        slug=mapa.get(c.get('capacidade_id',c['id']),c['skill'])
         return executar(c,args.fontes/slug,args.saida,args.modelo,args.timeout)
     results=[]
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as pool:
-        for r in pool.map(um,caps):
+        for r in pool.map(um,tarefas(caps)):
             results.append(r);print(r['capacidade'],r['estado'],sum(x['passou'] for x in r.get('checks',[])),flush=True)
-    resumo={'modelo':args.modelo,'capacidades':len(results),'executadas':sum(r['estado']=='EXECUTED' for r in results),
+    resumo={'modelo':args.modelo,'capacidades':len(caps),'casos':len(results),'executadas':sum(r['estado']=='EXECUTED' for r in results),
             'ausentes':sum(r['estado']=='AUSENTE' for r in results),'erros':sum(r['estado']=='ERROR' for r in results),
             'checks_pass':sum(c['passou'] for r in results for c in r.get('checks',[])),
             'checks_total':sum(len(r.get('checks',[])) for r in results),
+            'aceite_qualidade':aceitavel(results),
             'limite':'Checks determinísticos de resposta; revisão semântica e artefatos têm aceite separado.'}
     (args.saida/'resumo.json').write_text(json.dumps(resumo,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(resumo,ensure_ascii=False),flush=True)
-    return 1 if resumo['erros'] else 0
+    return 0 if resumo['aceite_qualidade'] else 1
 if __name__=='__main__':raise SystemExit(main())
