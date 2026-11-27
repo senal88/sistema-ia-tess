@@ -23,6 +23,18 @@ def test_validador_sem_erros():
     assert validar.validar() == []
 
 
+def test_validador_ignora_o_que_o_gitignore_exclui():
+    residuo = RAIZ / "skills" / ".DS_Store"
+    criado = not residuo.exists()
+    residuo.write_bytes(b"\x00\x01")
+    try:
+        assert residuo not in set(validar.arquivos())
+        assert validar.validar() == []
+    finally:
+        if criado:
+            residuo.unlink()
+
+
 def test_31_skills():
     assert len([p for p in (RAIZ / "skills").iterdir() if p.is_dir()]) == 31
 

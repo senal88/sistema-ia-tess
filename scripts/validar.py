@@ -11,7 +11,9 @@ Confere:
 """
 from __future__ import annotations
 
+import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -31,8 +33,17 @@ MAX_DESCRICAO = 1024
 
 
 def arquivos():
-    for p in RAIZ.rglob("*"):
-        if p.is_file() and not (set(p.relative_to(RAIZ).parts) & IGNORAR):
+    """Arquivos que o git versiona ou versionaria: respeita o .gitignore (resíduo do Finder, saídas locais)."""
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+    try:
+        saida = subprocess.run(["git", "-C", str(RAIZ), "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+                               capture_output=True, check=True, env=env).stdout.decode("utf-8")
+        nomes = {n for n in saida.split("\0") if n}
+    except (OSError, subprocess.CalledProcessError):
+        nomes = {p.relative_to(RAIZ).as_posix() for p in RAIZ.rglob("*")}
+    for n in sorted(nomes):
+        p = RAIZ / n
+        if p.is_file() and not (set(Path(n).parts) & IGNORAR):
             yield p
 
 

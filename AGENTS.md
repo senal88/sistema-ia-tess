@@ -1,10 +1,10 @@
 # AGENTS.md — glob_00_sistema_ia_tess
 
-Contrato do repositório `senal88/sistema-ia-tess`. Herda `~/SYSTEM.md` → `~/Projects/AGENTS.md`; em conflito, vence a fonte de maior autoridade.
+Contrato do repositório `senal88/sistema-ia-tess`. Herda `~/SYSTEM.md` → `~/Projects/AGENTS.md` → `~/Projects/adapta_plataforma/AGENTS.md` (workspace); em conflito, vence a fonte de maior autoridade.
 
 ```text
-COMMIT_ROOT    = ~/Projects/sistema_ia_tess/glob_00_sistema_ia_tess
-NO_COMMIT_ROOT = ~/Projects/sistema_ia_tess/glob_00_sistema_ia_tess__local   (rascunhos, saídas, evidências)
+COMMIT_ROOT    = ~/Projects/adapta_plataforma/glob_00_sistema_ia_tess
+NO_COMMIT_ROOT = ~/Projects/adapta_plataforma/glob_00_sistema_ia_tess__local   (rascunhos, saídas, evidências)
 REMOTE         = git@github.com:senal88/sistema-ia-tess.git
 ```
 
