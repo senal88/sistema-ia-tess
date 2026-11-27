@@ -39,6 +39,13 @@ def test_31_skills():
     assert len([p for p in (RAIZ / "skills").iterdir() if p.is_dir()]) == 31
 
 
+def test_readme_lista_cada_plugin_com_instalacao():
+    readme = (RAIZ / "README.md").read_text(encoding="utf-8")
+    assert readme == gerar_marketplace.readme_gerado()
+    for p in gerar_marketplace.gerar()["plugins"]:
+        assert f"/plugin install {p['name']} --marketplace senal88/sistema-ia-tess" in readme, p["name"]
+
+
 def test_marketplace_em_dia_e_completo():
     gerado = gerar_marketplace.gerar()
     versionado = json.loads((RAIZ / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
