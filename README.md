@@ -4,6 +4,8 @@ Skills da **TESS Contabilidade Estratégica** para o empresário usar no Claude 
 
 Você pode instalar **uma skill**, **uma área** ou **o sistema completo**.
 
+> O repositório é **privado**. A instalação funciona para quem tem acesso a `senal88/sistema-ia-tess` no GitHub: no Claude Code, pelas credenciais Git da máquina; no app do Claude, pela conta do GitHub conectada.
+
 ## Instalar no app do Claude
 
 1. Abra **Customize › Plugins**.
