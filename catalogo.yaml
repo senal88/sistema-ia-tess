@@ -1,0 +1,68 @@
+# Catálogo do Sistema IA TESS — dono único da lista de skills, áreas e pacotes.
+# `.claude-plugin/marketplace.json` é gerado daqui por `make marketplace`; não editar à mão.
+
+marketplace:
+  nome: sistema-ia-tess
+  dono: TESS Contabilidade Estratégica
+  descricao: Sistema IA TESS — skills de gestão, finanças, comercial, IA e marketing da TESS Contabilidade Estratégica para o empresário usar no Claude.
+  repositorio: senal88/sistema-ia-tess
+
+pacote_completo:
+  nome: sistema-ia-tess
+  titulo: Sistema IA TESS (completo)
+  descricao: As 31 skills TESS de gestão, finanças, comercial, gente, IA e marketing, com documentos no padrão TESS.
+
+areas:
+  gestao:
+    plugin: tess-gestao
+    titulo: TESS Gestão e Finanças
+    descricao: Perfil da empresa, diretor financeiro, plano de receita, gestão, processos, reforma tributária, modelo de negócio e assinatura.
+  comercial:
+    plugin: tess-comercial
+    titulo: TESS Comercial e Cliente
+    descricao: Diretor comercial, agente de vendas, calendário comercial, experiência do cliente, aquisição, concorrentes e raio-x do site.
+  gente:
+    plugin: tess-gente
+    titulo: TESS Gente
+    descricao: Diretora de gente — cargos, contratação, custo de pessoal, avaliação e conversas de alinhamento.
+  ia:
+    plugin: tess-ia
+    titulo: TESS IA no Negócio
+    descricao: Head de IA, serviços com IA, negócio eficiente, construtor de IA, engenheiro de prompt e agente de qualidade.
+  marketing:
+    plugin: tess-marketing
+    titulo: TESS Marketing e Conteúdo
+    descricao: Engenharia de marketing, ferramenta de marketing, marketing educativo, temas, ganchos, carrosséis e vídeos curtos.
+
+skills:
+  - {slug: tess-boas-vindas, titulo: Boas-vindas TESS, area: gestao}
+  - {slug: tess-perfil-da-empresa, titulo: Perfil da empresa, area: gestao}
+  - {slug: tess-diretor-financeiro, titulo: Diretor Financeiro, area: gestao}
+  - {slug: tess-plano-de-receita, titulo: Plano de Receita, area: gestao}
+  - {slug: tess-modelo-de-gestao, titulo: Modelo de Gestão, area: gestao}
+  - {slug: tess-processos-chave, titulo: Processos-Chave, area: gestao}
+  - {slug: tess-reforma-tributaria, titulo: Reforma Tributária, area: gestao}
+  - {slug: tess-modelo-de-negocio, titulo: Modelo de Negócio, area: gestao}
+  - {slug: tess-modelo-de-assinatura, titulo: Modelo de Assinatura, area: gestao}
+  - {slug: tess-diretor-comercial, titulo: Diretor Comercial, area: comercial}
+  - {slug: tess-agente-de-vendas, titulo: Agente de Vendas, area: comercial}
+  - {slug: tess-calendario-comercial, titulo: Calendário Comercial, area: comercial}
+  - {slug: tess-experiencia-do-cliente, titulo: Experiência do Cliente, area: comercial}
+  - {slug: tess-mecanismos-de-aquisicao, titulo: Mecanismos de Aquisição, area: comercial}
+  - {slug: tess-radar-de-concorrentes, titulo: Radar de Concorrentes, area: comercial}
+  - {slug: tess-raio-x-do-site, titulo: Raio-X do Site, area: comercial}
+  - {slug: tess-diretora-de-gente, titulo: Diretora de Gente, area: gente}
+  - {slug: tess-head-de-ia, titulo: Head de IA, area: ia}
+  - {slug: tess-servicos-com-ia, titulo: Serviços com IA, area: ia}
+  - {slug: tess-negocio-eficiente-ia, titulo: Negócio Eficiente com IA, area: ia}
+  - {slug: tess-construtor-de-ia, titulo: Construtor de IA, area: ia}
+  - {slug: tess-engenheiro-de-prompt, titulo: Engenheiro de Prompt, area: ia}
+  - {slug: tess-agente-de-qualidade, titulo: Agente de Qualidade, area: ia}
+  - {slug: tess-engenharia-de-marketing, titulo: Engenharia de Marketing, area: marketing}
+  - {slug: tess-ferramenta-de-marketing, titulo: Ferramenta de Marketing, area: marketing}
+  - {slug: tess-marketing-educativo, titulo: Marketing Educativo, area: marketing}
+  - {slug: tess-buscar-temas, titulo: Buscar Temas, area: marketing}
+  - {slug: tess-criar-ganchos, titulo: Criar Ganchos, area: marketing}
+  - {slug: tess-storyteller-carrossel, titulo: Storyteller de Carrossel, area: marketing}
+  - {slug: tess-maquina-de-carrosseis, titulo: Máquina de Carrosséis, area: marketing}
+  - {slug: tess-videos-curtos, titulo: Vídeos Curtos, area: marketing}

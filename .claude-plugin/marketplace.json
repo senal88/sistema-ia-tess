@@ -1,0 +1,769 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "sistema-ia-tess",
+  "description": "Sistema IA TESS — skills de gestão, finanças, comercial, IA e marketing da TESS Contabilidade Estratégica para o empresário usar no Claude.",
+  "owner": {
+    "name": "TESS Contabilidade Estratégica"
+  },
+  "plugins": [
+    {
+      "name": "sistema-ia-tess",
+      "displayName": "Sistema IA TESS (completo)",
+      "description": "As 31 skills TESS de gestão, finanças, comercial, gente, IA e marketing, com documentos no padrão TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "pacote",
+      "keywords": [
+        "tess",
+        "completo"
+      ],
+      "skills": [
+        "./skills/tess-boas-vindas",
+        "./skills/tess-perfil-da-empresa",
+        "./skills/tess-diretor-financeiro",
+        "./skills/tess-plano-de-receita",
+        "./skills/tess-modelo-de-gestao",
+        "./skills/tess-processos-chave",
+        "./skills/tess-reforma-tributaria",
+        "./skills/tess-modelo-de-negocio",
+        "./skills/tess-modelo-de-assinatura",
+        "./skills/tess-diretor-comercial",
+        "./skills/tess-agente-de-vendas",
+        "./skills/tess-calendario-comercial",
+        "./skills/tess-experiencia-do-cliente",
+        "./skills/tess-mecanismos-de-aquisicao",
+        "./skills/tess-radar-de-concorrentes",
+        "./skills/tess-raio-x-do-site",
+        "./skills/tess-diretora-de-gente",
+        "./skills/tess-head-de-ia",
+        "./skills/tess-servicos-com-ia",
+        "./skills/tess-negocio-eficiente-ia",
+        "./skills/tess-construtor-de-ia",
+        "./skills/tess-engenheiro-de-prompt",
+        "./skills/tess-agente-de-qualidade",
+        "./skills/tess-engenharia-de-marketing",
+        "./skills/tess-ferramenta-de-marketing",
+        "./skills/tess-marketing-educativo",
+        "./skills/tess-buscar-temas",
+        "./skills/tess-criar-ganchos",
+        "./skills/tess-storyteller-carrossel",
+        "./skills/tess-maquina-de-carrosseis",
+        "./skills/tess-videos-curtos"
+      ]
+    },
+    {
+      "name": "tess-gestao",
+      "displayName": "TESS Gestão e Finanças",
+      "description": "Perfil da empresa, diretor financeiro, plano de receita, gestão, processos, reforma tributária, modelo de negócio e assinatura.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "area",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-boas-vindas",
+        "./skills/tess-perfil-da-empresa",
+        "./skills/tess-diretor-financeiro",
+        "./skills/tess-plano-de-receita",
+        "./skills/tess-modelo-de-gestao",
+        "./skills/tess-processos-chave",
+        "./skills/tess-reforma-tributaria",
+        "./skills/tess-modelo-de-negocio",
+        "./skills/tess-modelo-de-assinatura"
+      ]
+    },
+    {
+      "name": "tess-comercial",
+      "displayName": "TESS Comercial e Cliente",
+      "description": "Diretor comercial, agente de vendas, calendário comercial, experiência do cliente, aquisição, concorrentes e raio-x do site.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "area",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-diretor-comercial",
+        "./skills/tess-agente-de-vendas",
+        "./skills/tess-calendario-comercial",
+        "./skills/tess-experiencia-do-cliente",
+        "./skills/tess-mecanismos-de-aquisicao",
+        "./skills/tess-radar-de-concorrentes",
+        "./skills/tess-raio-x-do-site"
+      ]
+    },
+    {
+      "name": "tess-gente",
+      "displayName": "TESS Gente",
+      "description": "Diretora de gente — cargos, contratação, custo de pessoal, avaliação e conversas de alinhamento.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "area",
+      "keywords": [
+        "tess",
+        "gente"
+      ],
+      "skills": [
+        "./skills/tess-diretora-de-gente"
+      ]
+    },
+    {
+      "name": "tess-ia",
+      "displayName": "TESS IA no Negócio",
+      "description": "Head de IA, serviços com IA, negócio eficiente, construtor de IA, engenheiro de prompt e agente de qualidade.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "area",
+      "keywords": [
+        "tess",
+        "ia"
+      ],
+      "skills": [
+        "./skills/tess-head-de-ia",
+        "./skills/tess-servicos-com-ia",
+        "./skills/tess-negocio-eficiente-ia",
+        "./skills/tess-construtor-de-ia",
+        "./skills/tess-engenheiro-de-prompt",
+        "./skills/tess-agente-de-qualidade"
+      ]
+    },
+    {
+      "name": "tess-marketing",
+      "displayName": "TESS Marketing e Conteúdo",
+      "description": "Engenharia de marketing, ferramenta de marketing, marketing educativo, temas, ganchos, carrosséis e vídeos curtos.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "area",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-engenharia-de-marketing",
+        "./skills/tess-ferramenta-de-marketing",
+        "./skills/tess-marketing-educativo",
+        "./skills/tess-buscar-temas",
+        "./skills/tess-criar-ganchos",
+        "./skills/tess-storyteller-carrossel",
+        "./skills/tess-maquina-de-carrosseis",
+        "./skills/tess-videos-curtos"
+      ]
+    },
+    {
+      "name": "tess-boas-vindas",
+      "displayName": "TESS · Boas-vindas TESS",
+      "description": "Porta de entrada do Sistema IA TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-boas-vindas"
+      ]
+    },
+    {
+      "name": "tess-perfil-da-empresa",
+      "displayName": "TESS · Perfil da empresa",
+      "description": "Monta e salva o perfil da empresa (setor, regime tributário, tamanho, oferta, clientes, números, dor e meta) que todas as skills TESS leem antes de perguntar, para o empresário não repetir informação.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-perfil-da-empresa"
+      ]
+    },
+    {
+      "name": "tess-diretor-financeiro",
+      "displayName": "TESS · Diretor Financeiro",
+      "description": "Atua como diretor financeiro da empresa com o olhar da TESS Contabilidade Estratégica.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-diretor-financeiro"
+      ]
+    },
+    {
+      "name": "tess-plano-de-receita",
+      "displayName": "TESS · Plano de Receita",
+      "description": "Monta o plano de receita da empresa com poucas perguntas, como uma diretoria de receita da TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-plano-de-receita"
+      ]
+    },
+    {
+      "name": "tess-modelo-de-gestao",
+      "displayName": "TESS · Modelo de Gestão",
+      "description": "Desenha o modelo de gestão da empresa com método TESS: indicadores por área, metas, rituais (diário, semanal, mensal), papéis e o painel que o dono olha para decidir.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-modelo-de-gestao"
+      ]
+    },
+    {
+      "name": "tess-processos-chave",
+      "displayName": "TESS · Processos-Chave",
+      "description": "Mapeia os processos-chave da empresa com método TESS, mostra onde o dono é gargalo, o que pode ser delegado, padronizado ou automatizado, e entrega o mapa de processos, POPs (procedimento operacional padrão) dos três processos mais críticos e matriz de responsabilidades em documento TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-processos-chave"
+      ]
+    },
+    {
+      "name": "tess-reforma-tributaria",
+      "displayName": "TESS · Reforma Tributária",
+      "description": "Explica e simula, com a leitura gerencial da TESS, o que a reforma tributária do consumo (CBS, IBS e Imposto Seletivo, transição 2026–2033) muda para a empresa do cliente: preço, margem, crédito, caixa (split payment), contratos e regime.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-reforma-tributaria"
+      ]
+    },
+    {
+      "name": "tess-modelo-de-negocio",
+      "displayName": "TESS · Modelo de Negócio",
+      "description": "Faz a leitura estratégica do modelo de negócio da empresa com método TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-modelo-de-negocio"
+      ]
+    },
+    {
+      "name": "tess-modelo-de-assinatura",
+      "displayName": "TESS · Modelo de Assinatura",
+      "description": "Desenha uma oferta recorrente (assinatura, clube, plano mensal de manutenção ou acompanhamento) para a empresa, com método TESS: o que entra no plano, níveis, preço, regras de permanência e cancelamento, conta de margem e projeção de receita recorrente.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gestao",
+      "keywords": [
+        "tess",
+        "gestao"
+      ],
+      "skills": [
+        "./skills/tess-modelo-de-assinatura"
+      ]
+    },
+    {
+      "name": "tess-diretor-comercial",
+      "displayName": "TESS · Diretor Comercial",
+      "description": "Atua como diretor comercial com método TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "comercial",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-diretor-comercial"
+      ]
+    },
+    {
+      "name": "tess-agente-de-vendas",
+      "displayName": "TESS · Agente de Vendas",
+      "description": "Cria, com método TESS, um agente de IA de vendas para a empresa: o assistente que responde o primeiro contato, qualifica o interessado, tira dúvidas sobre a oferta, trata objeções e agenda a reunião ou passa para o vendedor.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "comercial",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-agente-de-vendas"
+      ]
+    },
+    {
+      "name": "tess-calendario-comercial",
+      "displayName": "TESS · Calendário Comercial",
+      "description": "Monta o calendário comercial de 12 meses da empresa com método TESS: datas do varejo e do setor, sazonalidade do próprio negócio, campanhas com oferta, meta e canal, e a preparação de cada uma.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "comercial",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-calendario-comercial"
+      ]
+    },
+    {
+      "name": "tess-experiencia-do-cliente",
+      "displayName": "TESS · Experiência do Cliente",
+      "description": "Desenha a experiência do cliente da empresa com método TESS: jornada do primeiro contato à recompra, momentos que decidem a satisfação, pontos de atrito, rotina de pós-venda, pesquisa de satisfação e programa de indicação.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "comercial",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-experiencia-do-cliente"
+      ]
+    },
+    {
+      "name": "tess-mecanismos-de-aquisicao",
+      "displayName": "TESS · Mecanismos de Aquisição",
+      "description": "Escolhe e estrutura, com método TESS, os mecanismos de aquisição de clientes que fazem sentido para a empresa (indicação, parcerias, prospecção ativa, conteúdo, anúncios, eventos, isca digital, comunidade), compara custo, prazo e potencial de cada um e entrega o plano de aquisição de 90 dias em documento TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "comercial",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-mecanismos-de-aquisicao"
+      ]
+    },
+    {
+      "name": "tess-radar-de-concorrentes",
+      "displayName": "TESS · Radar de Concorrentes",
+      "description": "Faz o radar de concorrentes da empresa com método TESS: quem disputa o mesmo cliente, como cada um se posiciona, preço, oferta, canais e reputação, onde está o espaço vazio no mercado e qual posicionamento a empresa deve ocupar.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "comercial",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-radar-de-concorrentes"
+      ]
+    },
+    {
+      "name": "tess-raio-x-do-site",
+      "displayName": "TESS · Raio-X do Site",
+      "description": "Faz o raio-x do site da empresa com método TESS: clareza da mensagem nos primeiros segundos, prova, oferta, chamada para ação, contato, velocidade e celular, busca no Google e confiança.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "comercial",
+      "keywords": [
+        "tess",
+        "comercial"
+      ],
+      "skills": [
+        "./skills/tess-raio-x-do-site"
+      ]
+    },
+    {
+      "name": "tess-diretora-de-gente",
+      "displayName": "TESS · Diretora de Gente",
+      "description": "Atua como diretora de gente (RH estratégico) com método TESS.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "gente",
+      "keywords": [
+        "tess",
+        "gente"
+      ],
+      "skills": [
+        "./skills/tess-diretora-de-gente"
+      ]
+    },
+    {
+      "name": "tess-head-de-ia",
+      "displayName": "TESS · Head de IA",
+      "description": "Faz o papel de Head de IA do empresário com método TESS: entrevista sobre a rotina e os gargalos, mostra onde a IA economiza mais horas no trabalho do dono e no negócio, prioriza por impacto e facilidade, monta o roteiro de adoção com as ferramentas do Claude (chat, projetos, skills, conectores, Cowork, Code) e já coloca a primeira tarefa para rodar junto.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "ia",
+      "keywords": [
+        "tess",
+        "ia"
+      ],
+      "skills": [
+        "./skills/tess-head-de-ia"
+      ]
+    },
+    {
+      "name": "tess-servicos-com-ia",
+      "displayName": "TESS · Serviços com IA",
+      "description": "Mostra ao dono de empresa de serviço, com método TESS, qual parte da entrega a IA já faz, como entregar mais com o mesmo time e como trocar a cobrança por hora ou por mensalidade genérica por cobrança por resultado ou por pacote.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "ia",
+      "keywords": [
+        "tess",
+        "ia"
+      ],
+      "skills": [
+        "./skills/tess-servicos-com-ia"
+      ]
+    },
+    {
+      "name": "tess-negocio-eficiente-ia",
+      "displayName": "TESS · Negócio Eficiente com IA",
+      "description": "Faz o diagnóstico de eficiência da empresa com IA, área por área (comercial, atendimento, financeiro, operação, pessoas, marketing), com método TESS: encontra desperdício de horas e de dinheiro, estima o ganho de cada automação e monta a esteira de implantação priorizada com indicadores.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "ia",
+      "keywords": [
+        "tess",
+        "ia"
+      ],
+      "skills": [
+        "./skills/tess-negocio-eficiente-ia"
+      ]
+    },
+    {
+      "name": "tess-construtor-de-ia",
+      "displayName": "TESS · Construtor de IA",
+      "description": "Constrói com o empresário, com método TESS, uma ferramenta de IA própria do negócio: skill, agente, projeto com instruções ou automação, a partir de uma tarefa recorrente.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "ia",
+      "keywords": [
+        "tess",
+        "ia"
+      ],
+      "skills": [
+        "./skills/tess-construtor-de-ia"
+      ]
+    },
+    {
+      "name": "tess-engenheiro-de-prompt",
+      "displayName": "TESS · Engenheiro de Prompt",
+      "description": "Escreve e melhora prompts para o empresário com método TESS: transforma um pedido vago em instrução clara com papel, contexto, tarefa, formato, critérios de qualidade e exemplos; diagnostica por que um prompt não funciona e entrega a versão nova com teste lado a lado.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "ia",
+      "keywords": [
+        "tess",
+        "ia"
+      ],
+      "skills": [
+        "./skills/tess-engenheiro-de-prompt"
+      ]
+    },
+    {
+      "name": "tess-agente-de-qualidade",
+      "displayName": "TESS · Agente de Qualidade",
+      "description": "Cria com o empresário, com método TESS, um agente de qualidade para qualquer processo ou entrega da empresa (proposta, atendimento, relatório, peça de marketing, conversa de vendas, entrega técnica): define critérios objetivos, pesos, exemplos de nota alta e baixa, e escreve o avaliador que dá nota de 0 a 10 por critério e a correção pronta.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "ia",
+      "keywords": [
+        "tess",
+        "ia"
+      ],
+      "skills": [
+        "./skills/tess-agente-de-qualidade"
+      ]
+    },
+    {
+      "name": "tess-engenharia-de-marketing",
+      "displayName": "TESS · Engenharia de Marketing",
+      "description": "Estrutura o marketing da empresa como sistema, com método TESS: público e dores, mensagem central, oferta de entrada, canais, conteúdo, captura e nutrição de contatos, passagem para vendas e indicadores do funil.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-engenharia-de-marketing"
+      ]
+    },
+    {
+      "name": "tess-ferramenta-de-marketing",
+      "displayName": "TESS · Ferramenta de Marketing",
+      "description": "Cria, com método TESS, uma ferramenta de marketing interativa que atrai e qualifica clientes: calculadora, simulador, diagnóstico rápido ou checklist com resultado, em página HTML única pronta para publicar, com captura de contato opcional e o resultado com a cara da marca do cliente.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-ferramenta-de-marketing"
+      ]
+    },
+    {
+      "name": "tess-marketing-educativo",
+      "displayName": "TESS · Marketing Educativo",
+      "description": "Planeja o marketing educativo da empresa com método TESS: transforma o conhecimento técnico do negócio em conteúdo que ensina o cliente a decidir melhor (aula curta, guia, série de posts, mini-curso, webinar, newsletter) e conduz naturalmente à oferta.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-marketing-educativo"
+      ]
+    },
+    {
+      "name": "tess-buscar-temas",
+      "displayName": "TESS · Buscar Temas",
+      "description": "Sugere temas de conteúdo para as redes da empresa com método TESS: lê o perfil (negócio, público, dores), faz no máximo três perguntas e traz três temas com ângulo, por que esse público para para ler, gancho provisório e o que o post entrega.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-buscar-temas"
+      ]
+    },
+    {
+      "name": "tess-criar-ganchos",
+      "displayName": "TESS · Criar Ganchos",
+      "description": "Cria ganchos (primeira frase, título de capa ou abertura de vídeo) para conteúdo da empresa com método TESS: a partir de um tema, gera de 10 a 15 opções em estruturas diferentes (número, erro, contraste, pergunta, promessa com prazo, história), dá nota para cada uma e indica as três melhores com o porquê.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-criar-ganchos"
+      ]
+    },
+    {
+      "name": "tess-storyteller-carrossel",
+      "displayName": "TESS · Storyteller de Carrossel",
+      "description": "Escreve um carrossel de redes sociais (Instagram, LinkedIn) em formato de história, com método TESS: gancho de capa, tensão, virada, explicação em passos, prova e chamada final, de 6 a 10 lâminas, com texto curto por lâmina, legenda e sugestão visual de cada lâmina.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-storyteller-carrossel"
+      ]
+    },
+    {
+      "name": "tess-maquina-de-carrosseis",
+      "displayName": "TESS · Máquina de Carrosséis",
+      "description": "Produz carrosséis em série para a empresa, com método TESS: define a identidade visual do perfil (cores, fontes, grade, estilos de lâmina), planeja uma série de 4 a 12 carrosséis a partir dos pilares de conteúdo e gera as lâminas como HTML pronto para exportar em imagem (1080×1350), com texto, legenda e calendário de publicação.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-maquina-de-carrosseis"
+      ]
+    },
+    {
+      "name": "tess-videos-curtos",
+      "displayName": "TESS · Vídeos Curtos",
+      "description": "Cria roteiros de vídeos curtos (Reels, Shorts, TikTok, vídeos de 30 a 90 segundos) para a empresa com método TESS: gancho nos 3 primeiros segundos, desenvolvimento em blocos, prova e chamada, com indicação de cena, texto na tela, corte e legenda.",
+      "source": "./",
+      "strict": false,
+      "version": "1.0.0",
+      "author": {
+        "name": "TESS Contabilidade Estratégica"
+      },
+      "category": "marketing",
+      "keywords": [
+        "tess",
+        "marketing"
+      ],
+      "skills": [
+        "./skills/tess-videos-curtos"
+      ]
+    }
+  ]
+}

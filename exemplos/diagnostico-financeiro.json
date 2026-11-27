@@ -1,0 +1,38 @@
+{
+  "titulo": "Diagnóstico financeiro do trimestre",
+  "subtitulo": "Onde a margem está sendo perdida e as três decisões que devolvem caixa em 90 dias.",
+  "sobrancelha": "Diretor Financeiro TESS",
+  "cliente": "Empresa Exemplo Ltda.",
+  "data": "27/11/2026",
+  "rotulo": "Confidencial",
+  "blocos": [
+    {"tipo": "secao", "titulo": "Leitura em um minuto"},
+    {"tipo": "paragrafo", "texto": "A empresa vende mais do que no ano passado, mas **sobra menos por real vendido**. O motivo principal é o desconto concedido para fechar contratos grandes, somado a um prazo médio de recebimento que passou de 38 para 61 dias."},
+    {"tipo": "kpis", "itens": [
+      {"rotulo": "Faturamento no trimestre", "valor": "R$ 1,84 mi", "tom": "leitura", "detalhe": "+12% sobre o mesmo período"},
+      {"rotulo": "Margem de contribuição", "valor": "31,4%", "tom": "risco", "detalhe": "era 38,0%"},
+      {"rotulo": "Caixa livre projetado", "valor": "R$ 212 mil", "tom": "referencia", "detalhe": "em 90 dias, com as ações"},
+      {"rotulo": "Prazo médio de recebimento", "valor": "61 dias", "tom": "risco"}
+    ]},
+    {"tipo": "secao", "titulo": "Resultado por linha de receita"},
+    {"tipo": "tabela", "colunas": ["Linha", "Receita", "Custo variável", "Margem", "Margem %"], "alinhar": ["e", "d", "d", "d", "d"],
+     "linhas": [
+       ["Serviço recorrente", "R$ 980.000", "R$ 548.800", "R$ 431.200", "44,0%"],
+       ["Projetos sob demanda", "R$ 640.000", "R$ 499.200", "R$ 140.800", "22,0%"],
+       ["Revenda de software", "R$ 220.000", "R$ 214.600", "R$ 5.400", "2,5%"]
+     ],
+     "total": ["Total", "R$ 1.840.000", "R$ 1.262.600", "R$ 577.400", "31,4%"]},
+    {"tipo": "fonte", "texto": "Fonte: balancete de setembro a novembro de 2026 e relatório de faturamento do sistema de gestão."},
+    {"tipo": "destaque", "tom": "risco", "titulo": "Revenda de software quase não deixa margem", "texto": "Cada R$ 100 vendidos deixam R$ 2,50 para pagar a estrutura. Vale renegociar com o fornecedor ou tratar a revenda apenas como porta de entrada do serviço recorrente."},
+    {"tipo": "secao", "titulo": "Plano de 90 dias"},
+    {"tipo": "passos", "itens": [
+      {"titulo": "Tabela de desconto com teto por margem", "texto": "Nenhum desconto abaixo de 35% de margem sem aprovação da diretoria.", "prazo": "Semana 1"},
+      {"titulo": "Régua de cobrança em D-3, D+1 e D+7", "texto": "Meta: prazo médio de recebimento abaixo de 45 dias.", "prazo": "Semana 2"},
+      {"titulo": "Revisão do contrato de revenda", "texto": "Renegociar repasse ou reposicionar a oferta.", "prazo": "Dia 45"},
+      {"titulo": "Fechamento gerencial mensal com a TESS", "texto": "DRE por linha de receita até o dia 10.", "prazo": "Mensal"}
+    ]},
+    {"tipo": "destaque", "tom": "nota", "titulo": "Próximo passo", "texto": "Confirme os números da tabela e a TESS atualiza a projeção de caixa com os dados de dezembro."},
+    {"tipo": "secao", "titulo": "Checklist de dados para o próximo ciclo"},
+    {"tipo": "checklist", "itens": [{"texto": "Balancete mensal fechado", "feito": true}, {"texto": "Contas a receber por cliente e vencimento"}, {"texto": "Contratos com desconto acima de 15%"}]}
+  ]
+}

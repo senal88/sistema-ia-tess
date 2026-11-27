@@ -1,0 +1,32 @@
+{
+  "titulo": "Plano de receita 2027",
+  "cliente": "Empresa Exemplo Ltda.",
+  "abas": [
+    {
+      "nome": "Premissas",
+      "nota": "Altere só as células em destaque; o resto da planilha recalcula.",
+      "colunas": ["Premissa", "Valor", "Como medir"],
+      "formatos": ["texto", "decimal", "texto"],
+      "editaveis": [1],
+      "linhas": [
+        ["Meta de receita nova por mês (R$)", 20000, "Contratos assinados no mês x mensalidade"],
+        ["Ticket médio mensal (R$)", 1500, "Média das mensalidades dos últimos 6 contratos"],
+        ["Conversão proposta → contrato", 0.25, "Contratos / propostas enviadas"],
+        ["Conversão reunião → proposta", 0.6, "Propostas / reuniões realizadas"],
+        ["Conversão contato → reunião", 0.2, "Reuniões / contatos qualificados"]
+      ],
+      "nomes": {"meta": "B5", "ticket": "B6", "c_prop": "B7", "c_reun": "B8", "c_cont": "B9"}
+    },
+    {
+      "nome": "Funil",
+      "colunas": ["Etapa", "Quantidade por mês", "Leitura"],
+      "formatos": ["texto", "decimal", "texto"],
+      "linhas": [
+        ["Contratos necessários", "=meta/ticket", "Meta dividida pelo ticket"],
+        ["Propostas necessárias", "=B5/c_prop", "Contratos / conversão da proposta"],
+        ["Reuniões necessárias", "=B6/c_reun", "Propostas / conversão da reunião"],
+        ["Contatos qualificados", "=B7/c_cont", "Reuniões / conversão do contato"]
+      ]
+    }
+  ]
+}
