@@ -319,6 +319,8 @@ def gerar_docx(spec: dict, m: dict, destino: Path) -> None:
         """Largura fixa por coluna (Word e LibreOffice respeitam só com layout fixo)."""
         tabela.autofit = False
         tbl = tabela._tbl; tblPr = tbl.tblPr
+        for velho in tblPr.findall(qn("w:tblW")) + tblPr.findall(qn("w:tblLayout")):
+            tblPr.remove(velho)
         lay = OxmlElement("w:tblLayout"); lay.set(qn("w:type"), "fixed"); tblPr.append(lay)
         tw = OxmlElement("w:tblW"); tw.set(qn("w:w"), str(int(sum(cms) * 567))); tw.set(qn("w:type"), "dxa"); tblPr.append(tw)
         grid = tbl.tblGrid
@@ -367,7 +369,8 @@ def gerar_docx(spec: dict, m: dict, destino: Path) -> None:
     # Capa: tabela de uma célula, fundo da capa, ocupando a página.
     capa = doc.add_table(rows=1, cols=1)
     larguras(capa, [21.0])
-    ind = OxmlElement("w:tblInd"); ind.set(qn("w:w"), "0"); ind.set(qn("w:type"), "dxa"); capa._tbl.tblPr.append(ind)
+    # No Word o recuo da tabela vai até o texto da célula; compensar a margem interna para a capa sangrar.
+    ind = OxmlElement("w:tblInd"); ind.set(qn("w:w"), str(int(1.8 * 567))); ind.set(qn("w:type"), "dxa"); capa._tbl.tblPr.append(ind)
     cel = capa.rows[0].cells[0]
     sombrear(cel, c["cover"]); bordas(cel); margem_celula(cel, 1.8, 0)
     tr = capa.rows[0]._tr; trPr = tr.get_or_add_trPr(); h = OxmlElement("w:trHeight")
@@ -503,6 +506,25 @@ def gerar_docx(spec: dict, m: dict, destino: Path) -> None:
             run(doc.add_paragraph(), b["texto"], fs["caption"], c["muted"])
         elif t == "quebra":
             doc.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
+
+    # O Word exige a ordem do esquema OOXML dentro de tblPr e tcPr.
+    ordem_tbl = ["tblStyle", "tblpPr", "tblOverlap", "bidiVisual", "tblStyleRowBandSize", "tblStyleColBandSize", "tblW",
+                 "jc", "tblCellSpacing", "tblInd", "tblBorders", "shd", "tblLayout", "tblCellMar", "tblLook"]
+    ordem_tc = ["cnfStyle", "tcW", "gridSpan", "hMerge", "vMerge", "tcBorders", "shd", "noWrap", "tcMar", "textDirection",
+                "tcFitText", "vAlign", "hideMark"]
+
+    def ordenar(el, ordem):
+        filhos = list(el)
+        for f in filhos:
+            el.remove(f)
+        filhos.sort(key=lambda f: ordem.index(f.tag.split("}")[1]) if f.tag.split("}")[1] in ordem else len(ordem))
+        for f in filhos:
+            el.append(f)
+
+    for tabela in doc.tables:
+        ordenar(tabela._tbl.tblPr, ordem_tbl)
+        for tc in tabela._tbl.iter(qn("w:tc")):
+            ordenar(tc.get_or_add_tcPr(), ordem_tc)
 
     doc.core_properties.title = spec["titulo"]
     doc.core_properties.author = "TESS Contabilidade Estratégica"
